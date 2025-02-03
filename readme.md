@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 
 # Addressing panel conservatism in research funding
 
@@ -94,7 +89,7 @@ This script reads in the data from NNF (not included), along with the associated
 * The data.frame "_callclass_" has call-level information, including the year a particular call was held, and various fields that identify the type of funding instrument. Particularly relevant here is the distinction between "Novelty-Dedicated" (Synergy) calls, marked e.g. as "grant_hrhg", and all other "Regular" calls.
 
 
-After loading these data files, the first half of the script "_aggregation_data_prep.r_" is dedicated to preparing the data for the analyses and simulation experiments. The script formats, cleans and recodes these data, merging the information at the proposal level whenever possible. It then adds to the proposal-level dataset "_a_" all available New Vintage and Creative Recombination scores (see (previous section of this readme file, "Metrics")[# Metrics]). It filters out all data from funding calls that are excluded from our analysis (e.g. calls that received fewer than two submissions, calls with no grant winners, calls for which evaluation data were incomplete, etc).
+After loading these data files, the first half of the script "_aggregation_data_prep.r_" is dedicated to preparing the data for the analyses and simulation experiments. The script formats, cleans and recodes these data, merging the information at the proposal level whenever possible. It then adds to the proposal-level dataset "_a_" all available New Vintage and Creative Recombination scores (see [previous section of this readme file, "Metrics"](#metrics)). It filters out all data from funding calls that are excluded from our analysis (e.g. calls that received fewer than two submissions, calls with no grant winners, calls for which evaluation data were incomplete, etc).
 
 The second part of this script is dedicated to some preliminary analyses -- from descriptive statistics, bivariate correlation, and then hypothesis testing on the evidence for conservatism in funding decisions at NNF.
 
@@ -112,11 +107,11 @@ This script performs the following:
 
 4. It calculates some statistics to summarize the outcome of each counterfactual call, and writes them to the _treatments_ data.frame. These outcomes include:
 
-  * Cohen's Kappa (the similarity between the decisions by the simulated counterfacutal panel, and the decisions made by their real-world counterpart).
+    * Cohen's Kappa (the similarity between the decisions by the simulated counterfacutal panel, and the decisions made by their real-world counterpart).
 
-  * For each of the New Vintage and Creative Recombination metrics, the average novelty of funded proposals.
+    * For each of the New Vintage and Creative Recombination metrics, the average novelty of funded proposals.
 
-  * Same as above, but for declined proposals.
+    * Same as above, but for declined proposals.
 
 5. Because simulations are run in parallel, each parallel execution writes a partial _treatments_ data.frame to a different file. These various partial files are joined into one complete 'output' data.frame, saved to disk as a .RData file for futher analyes (see next section).
 
@@ -137,6 +132,6 @@ Arts, S., Melluso, N., Veugelers, R., & Aristodemou, L. (2023b). _Publication te
 
 Azoulay, P., Graff Zivin, J. S., & Manso, G. (2011). Incentives and creativity: Evidence from the academic life sciences. _The RAND Journal of Economics_, 42(3), 527–554. https://doi.org/10.1111/j.1756-2171.2011.00140.x
 
-Pelletier, P., & Wirtz, K. (2022). _Novelpy: A python package to measure novelty and disruptiveness of bibliometric and patent data_. arXiv preprint arXiv:2211.10346.
+Pelletier, P., & Wirtz, K. (2022). _Novelpy: A python package to measure novelty and disruptiveness of bibliometric and patent data_. arXiv preprint arXiv:2211.10346. https://doi.org/10.48550/arXiv.2211.10346
 
 Shibayama, S., Yin, D., & Matsumoto, K. (2021). Measuring novelty in science with word embedding. _PLOS ONE_, 16(7), e0254034. https://doi.org/10.1371/journal.pone.0254034
