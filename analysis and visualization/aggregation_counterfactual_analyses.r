@@ -39,9 +39,9 @@ interventions <- c(
 interventionsLabels <- c(
   "Regular (baseline)", # This must be the first item of this vector.
   "Novelty-Dedicated", # This must be the second item of this vector
-  "Golden Tickets",
-  "Tie-Breaking Lotteries",
-  "Fundable-Pool Lotteries"
+  "* Golden Tickets",
+  "* Tie-Breaking Lotteries",
+  "* Fundable-Pool Lotteries"
 )
 
 
@@ -279,26 +279,18 @@ Figure_2 <-  ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions",
     title = NULL,
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
     subtitle = NULL,
     pattern = "",
     x = NULL, 
-    y = NULL
+    y = NULL,
+    caption = paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Regular panels"
+    )
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
   facet_grid(
@@ -324,7 +316,8 @@ Figure_2 <-  ggplot(
     strip.background = element_blank(),
     strip.text = element_text(angle = 0, hjust = 0.2),
     axis.text.x = element_text(angle = 10, hjust = 1),
-    legend.position = "bottom"
+    #legend.position = "bottom"
+    plot.caption = element_text(hjust = 0, vjust = 0, face = "italic") 
   )
 print(Figure_2)
 
@@ -445,26 +438,18 @@ Figure_3 <-  ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions",
     title = NULL,
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
     subtitle = NULL,
     pattern = "",
     x = NULL, 
-    y = NULL
+    y = NULL,
+    caption = paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Novelty-Dedicated panels"
+    )
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
   facet_grid(
@@ -488,9 +473,10 @@ Figure_3 <-  ggplot(
     panel.grid.major.y = element_line(color = "gray93", linewidth = 0.5),
     panel.background = element_rect(color = NA, fill = "gray97"),
     strip.background = element_blank(),
-    strip.text.x = element_text(angle = 0, hjust = 0.2),
+    strip.text = element_text(angle = 0, hjust = 0.2),
     axis.text.x = element_text(angle = 10, hjust = 1),
-    legend.position = "bottom"
+    #legend.position = "bottom"
+    plot.caption = element_text(hjust = 0, vjust = 0, face = "italic") 
   )
 print(Figure_3)
 
@@ -678,25 +664,19 @@ Figure_2_reg_increasedSubmissions <-  ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions under increased submission rates",
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
-    #subtitle = "T-test Δ(funded - declined) = 0"
+    title = NULL,
+    subtitle = NULL,
     pattern = "",
     x = NULL, 
-    y = NULL
+    y = NULL,
+    caption = paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Regular panels\n",
+      "   assuming a 20% higher submission rate"
+    )
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
   facet_grid(
@@ -713,16 +693,17 @@ Figure_2_reg_increasedSubmissions <-  ggplot(
   scale_x_continuous(
     expand = c(0, 0.005),
     breaks = c(0),
-    labels = c("Δ(funded - declined) = 0")
+    labels = c("Δ(Funded - Declined) = 0")
   ) +
   theme(
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_line(color = "gray93", linewidth = 0.5),
     panel.background = element_rect(color = NA, fill = "gray97"),
     strip.background = element_blank(),
-    strip.text.x = element_text(angle = 0, hjust = 0.3),
+    strip.text = element_text(angle = 0, hjust = 0.2),
     axis.text.x = element_text(angle = 10, hjust = 1),
-    legend.position = "bottom"
+    #legend.position = "bottom"
+    plot.caption = element_text(hjust = 0, vjust = 0, face = "italic") 
   )
 print(Figure_2_reg_increasedSubmissions)
 
@@ -842,25 +823,19 @@ Figure_3_novded_increasedSubmissions <-  ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions under increased submission rates",
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
-    #subtitle = "T-test Δ(funded - declined) = 0"
+    title = NULL,
+    subtitle = NULL,
     pattern = "",
     x = NULL, 
-    y = NULL
+    y = NULL,
+    caption = paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Novelty-Dedicated panels\n",
+      "   assuming a 20% higher submission rate"
+    )
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
   facet_grid(
@@ -877,16 +852,17 @@ Figure_3_novded_increasedSubmissions <-  ggplot(
   scale_x_continuous(
     expand = c(0, 0.005),
     breaks = c(0),
-    labels = c("Δ(funded - declined) = 0")
+    labels = c("Δ(Funded - Declined) = 0")
   ) +
   theme(
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_line(color = "gray93", linewidth = 0.5),
     panel.background = element_rect(color = NA, fill = "gray97"),
     strip.background = element_blank(),
-    strip.text.x = element_text(angle = 0, hjust = 0.3),
+    strip.text = element_text(angle = 0, hjust = 0.2),
     axis.text.x = element_text(angle = 10, hjust = 1),
-    legend.position = "bottom"
+    #legend.position = "bottom"
+    plot.caption = element_text(hjust = 0, vjust = 0, face = "italic") 
   )
 print(Figure_3_novded_increasedSubmissions)
 
@@ -1007,25 +983,19 @@ Figure_2_reg_loweredQuality <-  ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions under worsened evaluations",
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
-    #subtitle = "T-test Δ(funded - declined) = 0"
+    title = NULL,
+    subtitle = NULL,
     pattern = "",
     x = NULL, 
-    y = NULL
+    y = NULL,
+    caption = paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Regular panels\n",
+      "   assuming lower-quality proposals"
+    )
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
   facet_grid(
@@ -1042,16 +1012,17 @@ Figure_2_reg_loweredQuality <-  ggplot(
   scale_x_continuous(
     expand = c(0, 0.005),
     breaks = c(0),
-    labels = c("Δ(funded - declined) = 0")
+    labels = c("Δ(Funded - Declined) = 0")
   ) +
   theme(
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_line(color = "gray93", linewidth = 0.5),
     panel.background = element_rect(color = NA, fill = "gray97"),
     strip.background = element_blank(),
-    strip.text.x = element_text(angle = 0, hjust = 0.2),
+    strip.text = element_text(angle = 0, hjust = 0.2),
     axis.text.x = element_text(angle = 10, hjust = 1),
-    legend.position = "bottom"
+    #legend.position = "bottom"
+    plot.caption = element_text(hjust = 0, vjust = 0, face = "italic") 
   )
 print(Figure_2_reg_loweredQuality)
 
@@ -1171,25 +1142,19 @@ Figure_3_novded_loweredQuality <-  ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions under worsened evaluations",
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
-    #subtitle = "T-test Δ(funded - declined) = 0"
+    title = NULL,
+    subtitle = NULL,
     pattern = "",
     x = NULL, 
-    y = NULL
+    y = NULL,
+    caption = paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Novelt-Dedicated panels\n",
+      "   assuming lower-quality proposals"
+    )
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
   facet_grid(
@@ -1206,16 +1171,17 @@ Figure_3_novded_loweredQuality <-  ggplot(
   scale_x_continuous(
     expand = c(0, 0.005),
     breaks = c(0),
-    labels = c("Δ(funded - declined) = 0")
+    labels = c("Δ(Funded - Declined) = 0")
   ) +
   theme(
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_line(color = "gray93", linewidth = 0.5),
     panel.background = element_rect(color = NA, fill = "gray97"),
     strip.background = element_blank(),
-    strip.text.x = element_text(angle = 0, hjust = 0.2),
+    strip.text = element_text(angle = 0, hjust = 0.2),
     axis.text.x = element_text(angle = 10, hjust = 1),
-    legend.position = "bottom"
+    #legend.position = "bottom"
+    plot.caption = element_text(hjust = 0, vjust = 0, face = "italic") 
   )
 print(Figure_3_novded_loweredQuality)
 
@@ -1373,36 +1339,23 @@ Figure_2_allMetrics <- ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions",
     title = NULL,
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
     subtitle = NULL,
     pattern = "",
     x = NULL, 
     y = NULL
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
-  #facet_grid(~variable, scales = "free") +
   facet_wrap(~variable, ncol = 2, scales = "free") +
   geom_text(
     aes(x = mean_diff, y = intervention, label = round(mean_diff, digits = 3)),
-    hjust = 0, # Adjust position horizontally
-    vjust = -1.1,    # Adjust position vertically
-    color = "black", # Text color
-    size = 2      # Text size
+    hjust = 0,
+    vjust = -1.1,
+    color = "black",
+    size = 2
   ) +
   scale_x_continuous(
     expand = c(0, 0.005),
@@ -1416,10 +1369,26 @@ Figure_2_allMetrics <- ggplot(
     strip.background = element_blank(),
     axis.text.x = element_text(angle = 8, hjust = 1),
     #legend.position = "bottom"
-    legend.position = c(0.5, 0), 
-    legend.justification = c(0, 0),
-    legend.key.spacing.y = unit(10, "pt")
+    #legend.position = c(0.5, 0), 
+    #legend.justification = c(0, 0),
+    #legend.key.spacing.y = unit(10, "pt")
+    plot.caption = element_text(hjust = 0, vjust = 1, face = "italic")
   )
+
+Figure_2_allMetrics <- gridExtra::grid.arrange(
+  Figure_2_allMetrics, 
+  bottom = grid::grid.text(
+    paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Regular panels"
+    ),
+    x = 0.55, 
+    y = 2, hjust = 0, 
+    vjust = 0, 
+    gp = grid::gpar(fontsize = 10, fontface = "italic")
+  )
+)
+
 print(Figure_2_allMetrics)
 
 ggsave(
@@ -1567,36 +1536,23 @@ Figure_3_allMetrics <- ggplot(
     fill = "black", 
     alpha = 0.025
   ) +
-  geom_bar_pattern(
-    aes(pattern = as.factor(counterfactual)),#aes(pattern = counterfactual),
-    fill = "gray60",
-    color = "gray60",
-    pattern_color = "gray60",
-    pattern_fill = "gray50",
-    pattern_density = 0.5,
-    stat = "identity", 
-    width = 0.5
-  ) +
-  scale_pattern_manual(values = c("none", "stripe")) +
+  geom_col(fill = "gray55", width = 0.5) +
   geom_errorbar(width = 0.1) +
   labs(
-    #title = "Comparing interventions",
     title = NULL,
-    #subtitle = "Avg. vintage and recombination of funded vs declined proposals",
     subtitle = NULL,
     pattern = "",
     x = NULL, 
     y = NULL
   ) +
   geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
-  #facet_grid(~variable, scales = "free") +
   facet_wrap(~variable, ncol = 2, scales = "free") +
   geom_text(
     aes(x = mean_diff, y = intervention, label = round(mean_diff, digits = 3)),
-    hjust = 0, # Adjust position horizontally
-    vjust = -1.1,    # Adjust position vertically
-    color = "black", # Text color
-    size = 2      # Text size
+    hjust = 0,
+    vjust = -1.1,
+    color = "black",
+    size = 2
   ) +
   scale_x_continuous(
     expand = c(0, 0.005),
@@ -1610,11 +1566,25 @@ Figure_3_allMetrics <- ggplot(
     strip.background = element_blank(),
     axis.text.x = element_text(angle = 8, hjust = 1),
     #legend.position = "bottom"
-    legend.position = c(0.5, 0), 
-    legend.justification = c(0, 0),
-    legend.key.spacing.y = unit(10, "pt")
+    #legend.position = c(0.5, 0), 
+    #legend.justification = c(0, 0),
+    #legend.key.spacing.y = unit(10, "pt")
+    plot.caption = element_text(hjust = 0, vjust = 1, face = "italic")
   )
-print(Figure_3_allMetrics)
+
+Figure_3_allMetrics <- gridExtra::grid.arrange(
+  Figure_3_allMetrics, 
+  bottom = grid::grid.text(
+    paste0(
+      "* From counterfactual funding decisions based\n",
+      "   on simulations of Regular panels"
+    ),
+    x = 0.55, 
+    y = 2, hjust = 0, 
+    vjust = 0, 
+    gp = grid::gpar(fontsize = 10, fontface = "italic")
+  )
+)
 
 ggsave(
   #"./outputGraphics/Figure_2_synergyCounterfactuals.png",
@@ -2176,7 +2146,7 @@ ggsave(
 # Plotting the distance between real and counterfactual funding decisions:
 
 
-Figure_3 <- ggplot(
+ggplot(
   data = r[r$counterfactual,],
   aes(x = CohensKappa, y = treatmentLabel)
 ) +
@@ -2208,13 +2178,4 @@ Figure_3 <- ggplot(
     #plot.title = element_text(hjust = -1)
     #plot.background = element_blank(),
   )
-print(Figure_3)
 
-ggsave(
-  "./outputGraphics/Figure_3.png",
-  plot = Figure_3,
-  width = 1700,
-  height = 1000,
-  units = "px",
-  dpi = 300
-)
