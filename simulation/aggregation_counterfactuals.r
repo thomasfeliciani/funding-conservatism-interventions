@@ -12,8 +12,27 @@ library("compiler")
 
 source("./utils.r") # utility functions
 
-# Loading data
-load("./counterfactuals/input.RData")
+# Setting a random seed for replications:
+set.seed(12345)
+
+# Taking note of the time at the start of the simulation experiment.
+startTime <- Sys.time()
+
+# Next, we either load empirical data from NNF calls, which allows to simulate
+# counterfactual NNF calls, or we use synthetic dummy data instead. 
+# Here, "useDummyData" is initialized to TRUE (implying the use of synthetic
+# data) because NNF data necessary to simulate counterfactual NNF calls cannot 
+# be shared in this repository. 
+useDummyData <- TRUE # FALSE
+
+if (useDummyData) source("dummy_dataset_creator.r") else# synthesizing data or..
+  load("./counterfactuals/input.RData") # ..loading empirical NNF data
+
+# If "debug" is set to TRUE, then runs are executed sequentially, allowing for
+# easy inspection. If FALSE, they're run in parallel.
+debug = FALSE
+
+
 
 # Creating a string to be added to the name of output data files. By default,
 # this will be the date in which this sript is launched.
@@ -40,7 +59,6 @@ noveltyIndicators <- c(
   "shibayama_abs",
   "shibayama_avg", ########
   "Ngrams_dic_1"
-  
 )
 interventions <- c(
   "regular call", # This must be the first item of this vector.
@@ -63,11 +81,10 @@ goldenTicketProb <- 0.5
 # Number of repetitions for each call of each counterfactual scenario. 
 # The total number of runs per condition is determined by:
 # "repetitions" * "nBatches"
-repetitions = 5
-nBatches = 200
+repetitions = 2 # for our study we set this to 5
+nBatches = 5 # for our study we set this to 200
 
-# Setting a random seed for replications:
-set.seed(12345)
+
 
 
 ################################################################################
@@ -549,9 +566,7 @@ sim <- function(treatments, a, s, i) { # Foreach call
 ################################################################################
 # Running batteries
 
-# Let's run the battery. If debug is set to TRUE, then runs are executed 
-# sequentially, allowing for inspection. If FALSE, they're run in parallel.
-debug = FALSE
+# Let's run the battery. 
 
 compiler::enableJIT(1)
 if (debug) { # Sequential execution ____________________________________________
@@ -630,11 +645,11 @@ compiler::enableJIT(0)
 ################################################################################
 # Collating simulation batches into one file. 
 
-# Loading and stacking the 100 data batches from the simulation runs.
+# Loading and stacking the data batches from the simulation runs.
 # We load them one by one. The resulting complete dataframe will be called "r"
 # and written to file.
-pb <- txtProgressBar(min = 0, max = 100, style = 3) # setting up a progress bar
-for (batch in 1:100) {
+pb <- txtProgressBar(min = 0, max = nBatches, style = 3) # setting up a progress bar
+for (batch in 1:nBatches) {
   setTxtProgressBar(pb, batch) # updating the progress bar 
   
   # Loading batch number "batch" from the "batchDate" set of runs
@@ -734,5 +749,5 @@ if (FALSE) {
   foreign::write.dta(treatments, "./counterfactuals/callSimulations.dta")
 }
 
-
-
+paste("Simulation started:", startTime)
+paste("Simulation ended:", Sys.time())
