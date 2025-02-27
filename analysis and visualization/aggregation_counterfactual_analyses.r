@@ -12,9 +12,7 @@ library("gridExtra")
 #source("./utils.r")
 
 # Loading results dataframe. The variable "batchDate" identifies the desired
-# data batches.
-#batchDate = "20241219" # format(Sys.Date(), "%Y%m%d")
-#batchDate = "20250121" # format(Sys.Date(), "%Y%m%d")
+# data batches. Be sure to specify the correct date.
 batchDate = "20250123" # format(Sys.Date(), "%Y%m%d")
 
 load(paste0("./counterfactuals/output_", batchDate,"_complete.RData"))
