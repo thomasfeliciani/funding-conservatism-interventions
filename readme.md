@@ -34,7 +34,7 @@ Finally, for the calculation of *MeSH-based metrics*, we developed our own scrip
 
 ### MeSH-based metrics
 
-These scripts are written for R (version 4.4.0) and Python (versions 3.11.7 and 3.12.3). These scripts require API keys for various services provided by the the U.S. National Institutes of Health (NIH). To access these services we applied for two API credentials: (1) for the e-utils by the National Library of Medicine (NIH/NLM), and (2) for the Entrez e-utilities by the National Center for Biotechnology Information (NIH/NCBI). The former is needed to access MeSH metadata and use the MeSH-on-Demand APIs that we used to assign MeSH terms to NNF applications. The latter is needed for querying PubMed to determine when certain pairs of MeSH terms were first used together in the literature. These crentials consists in username-password pairs, and need to be saved in two separate txt files. These files are two-lines long, and the script assumes that the first line will be the username, and the second line the API key / password. NIH/NLM API credential file is assumed to be saved as "./scripts/api key.txt". NIH/NCBI API credential file should be saved as ".scripts/api key NCBI.txt". Txt files will work with standard character encoding (e.g. UTF-8).
+These scripts are written for R (version 4.4.0) and Python (versions 3.11.7 and 3.12.3). These scripts require API keys for various services provided by the the U.S. National Institutes of Health (NIH). To access these services we applied for two API credentials: for the "UMLS Terminology Services" at [this address](https://uts.nlm.nih.gov/uts/), and (2) for the "Entrez Programming Utilities" -- "E-Utilities" for short -- maintained by the National Center for Biotechnology Information (NIH/NCBI) and found at [this address](http://www.ncbi.nlm.nih.gov/account/). The former is needed to access MeSH metadata and use the MeSH-on-Demand APIs that we used to assign MeSH terms to NNF applications. The latter is needed for querying PubMed to determine when certain pairs of MeSH terms were first used together in the literature. These crentials consists in username-password pairs, and need to be saved in two separate txt files. These files are two-lines long, and the script assumes that the first line will be the username, and the second line the API key / password. The "UMLS Terminology Services" API credentials file is assumed to be saved as "./scripts/api key.txt". E-Utilities API credentials file should be saved as ".scripts/api key NCBI.txt". Txt files will work with standard character encoding (e.g. UTF-8).
 
 Here follows an outline of the scripts enclosed in this folder. They are presented in the order in which we ran them.
 
@@ -62,9 +62,9 @@ MeSH-based indicators enclosed herein were constructed based on the following re
 
 * NNF application data (not included in this repository);
 
-* e-utils by the National NIH/NLM (Library of Medicine). These were queried in April 2024;
+* "UMLS Terminology Services" by the National NIH/NLM (Library of Medicine). These were queried in April 2024;
 
-* PubMed/Entrez e-utilities by the NIH/NCBI (National Center for Biotechnology Information). These were queried between June-August 2024.
+* E-Utilities by the NIH/NCBI. These were queried between June-August 2024.
 
 All scripts are written for R (version 4.4.0) and Python (versions 3.11.7 and 3.12.3 -- specified at the top of each .py script). The set of external libraries required varies across scripts. A list of needed library is provided in the first few lines of each script.
 
